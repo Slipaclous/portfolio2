@@ -74,6 +74,13 @@ export default function AboutPage() {
         {interests.map((interest, index) => {
           const Icon = interest.icon;
           const interestContent = t.interests[interest.key as keyof typeof t.interests];
+
+          if (typeof interestContent === 'string') {
+        console.error(`Unexpected translation format for key: ${interest.key}`);
+        return null;
+      }
+
+
           
           return (
             <motion.div
