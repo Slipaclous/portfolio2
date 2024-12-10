@@ -29,8 +29,8 @@ export default function HeroSection() {
         transition={{ duration: 0.8 }}
         className="relative z-10 text-center"
       >
-        <h1 className="text-4xl md:text-6xl font-bold text-white">
-          <span className="text-white">
+        <h1 className="text-xl md:text-6xl font-bold text-white">
+          <span className="text-white text-4xl">
             <Typewriter
               words={t.hero.roles}
               loop={0}
