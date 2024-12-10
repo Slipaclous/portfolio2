@@ -2,7 +2,6 @@ import {
   Code2,
   Database,
   Layout,
-  Git,
   Palette,
   Globe2,
   Server,
@@ -69,7 +68,7 @@ export const skills: SkillCategory[] = [
     color: 'text-orange-500',
     bgColor: 'bg-orange-500/10',
     skills: [
-      { name: 'Git', icon: Git },
+      { name: 'Git', icon:Palette},
       { name: 'Bootstrap', icon: Palette },
       { name: 'Tailwind', icon: Palette },
       { name: 'SASS', icon: Palette },
