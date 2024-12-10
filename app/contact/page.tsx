@@ -89,7 +89,6 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-medium text-lg capitalize mb-1">
-                          {t.contact[method.title as keyof typeof t.contact]}
                         </h3>
                         <a
                           href={method.href}

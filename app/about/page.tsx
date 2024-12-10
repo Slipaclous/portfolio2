@@ -89,7 +89,7 @@ export default function AboutPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
                     <img
                       src={interest.image}
-                      alt={interestContent.title}
+                      alt={"interestContent.title"}
                       className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute bottom-4 left-4 right-4 z-20">
@@ -102,7 +102,6 @@ export default function AboutPage() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <p className="text-muted-foreground mb-4">{interestContent.description}</p>
                     <ul className="space-y-2">
                       {interestContent.details.map((detail, i) => (
                         <li

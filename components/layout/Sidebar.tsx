@@ -97,7 +97,7 @@ export default function Sidebar({ isMobile, onNavigate }: SidebarProps) {
                   isActive ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'
                 )}
               >
-                <Icon size={18} className={isActive ? 'text-accent-foreground' : item.color} />
+                <Icon size={18} />
                 <span>{label}</span>
               </Link>
             );
