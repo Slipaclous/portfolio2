@@ -30,7 +30,7 @@ export default function HeroSection() {
         className="relative z-10 text-center"
       >
         <h1 className="text-4xl md:text-6xl font-bold text-white">
-          <span className="text-primary">
+          <span className="text-white">
             <Typewriter
               words={t.hero.roles}
               loop={0}
