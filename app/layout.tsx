@@ -9,8 +9,8 @@ import { LanguageProvider } from '@/components/LanguageContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'John Doe | Web Developer',
-  description: 'Professional portfolio of John Doe, Web Developer',
+  title: 'Gauthier Minor | Web Developer',
+  description: 'Professional portfolio of Gauthier Minor, Web Developer',
 };
 
 export default function RootLayout({
