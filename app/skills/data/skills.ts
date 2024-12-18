@@ -1,6 +1,7 @@
 import {
   Code2,
   Database,
+  GitBranch,
   Layout,
   Palette,
   Globe2,
@@ -53,7 +54,7 @@ export const skills: SkillCategory[] = [
     ],
   },
   {
-    category: 'CMS & E-commerce',
+    category: 'Cms',
     icon: Store,
     color: 'text-purple-500',
     bgColor: 'bg-purple-500/10',
@@ -63,12 +64,12 @@ export const skills: SkillCategory[] = [
     ],
   },
   {
-    category: 'Tools & Frameworks',
+    category: 'Tools',
     icon: Hammer,
     color: 'text-orange-500',
     bgColor: 'bg-orange-500/10',
     skills: [
-      { name: 'Git', icon:Palette},
+      { name: 'Git', icon:GitBranch},
       { name: 'Bootstrap', icon: Palette },
       { name: 'Tailwind', icon: Palette },
       { name: 'SASS', icon: Palette },

@@ -49,7 +49,7 @@ export default function HeroSection() {
         className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10"
       >
         <div className="animate-bounce">
-          <div className="w-6 h-10 rounded-full border-2 border-primary flex items-start justify-center p-1">
+          <div className="w-10 h-14 rounded-full border-2 border-primary flex items-start justify-center p-1">
             <div className="w-1 h-2 bg-primary rounded-full animate-pulse" />
           </div>
         </div>

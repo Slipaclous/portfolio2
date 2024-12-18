@@ -109,6 +109,7 @@ export default function AboutPage() {
                     </div>
                   </div>
                   <div className="p-6">
+                    <h3 className='mb-5 text-md'> {interestContent.description}</h3>
                     <ul className="space-y-2">
                       {interestContent.details.map((detail, i) => (
                         <li

@@ -77,7 +77,7 @@ export const translations = {
         details: [
           'Festival regular',
           'Genre: Drum & Bass and Rock',
-          'Amateur DJ'
+          'Amateur guitarist'
         ]
       },
       cats: {
@@ -178,12 +178,12 @@ export const translations = {
         details: [
           'Habitué des festivals',
           'Genre: Drum & Bass et Rock',
-          'DJ amateur'
+          'Guitariste amateurr'
         ]
       },
       cats: {
         title: 'Amoureux des chats',
-        description: 'Passionnés de féélins.',
+        description: "Passionnés de félins (oui c'est le mien sur la photo).",
         details: [
           'Charles le british',
           'Chauffages de genoux pro',
