@@ -1,6 +1,6 @@
 'use client';
 
-import { Home, Code2, FolderGit2, User, Mail, Github, Linkedin } from 'lucide-react';
+import { Home, Code2, FolderGit2, User, Mail, Github, Linkedin, Gamepad } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';

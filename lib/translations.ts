@@ -43,7 +43,7 @@ export const translations = {
       title: 'Featured Projects',
       subtitle: 'Explore my latest work and side projects. Each project represents my passion for creating innovative and user-friendly web applications.',
       viewCode: 'Code',
-      viewDemo: 'Live Demo',
+      viewDemo: 'Visit Website',
     },
     contact: {
       title: 'Get in Touch',
@@ -144,7 +144,7 @@ export const translations = {
       title: 'Projets en vedette',
       subtitle: 'Découvrez mes derniers travaux et projets personnels. Chaque projet représente ma passion pour la création d\'applications web innovantes et conviviales.',
       viewCode: 'Code',
-      viewDemo: 'Démo',
+      viewDemo: 'Visiter le site',
     },
     contact: {
       title: 'Me Contacter',
