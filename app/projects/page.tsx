@@ -173,14 +173,7 @@ export default function ProjectsPage() {
         transition={{ delay: 0.8, duration: 0.6 }}
         className="mt-16 text-center"
       >
-        <Button 
-          variant="outline" 
-          size="lg" 
-          className="rounded-full px-6 group hover:bg-primary/10 hover:border-primary/50"
-        >
-          <span>Voir plus de projets</span>
-          <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-        </Button>
+        
       </motion.div>
     </div>
   );
