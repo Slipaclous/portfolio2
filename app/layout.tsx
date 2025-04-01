@@ -19,6 +19,8 @@ export const metadata: Metadata = {
     ],
     apple: { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
   },
+
+  
 };
 export default function RootLayout({
   children,
@@ -27,6 +29,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+      <meta name="google-site-verification" content="X3XaMATl8UlFkcSJu2vNjuEKWI-nMdEX-QVhaz9ehPI" />
+      </head>
       <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <LanguageProvider>
