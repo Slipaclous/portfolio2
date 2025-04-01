@@ -52,7 +52,7 @@ export default function Sidebar({ isMobile, onNavigate }: SidebarProps) {
               className="w-full h-full object-cover"
             />
           </div>
-          <h1 className="text-xl font-bold text-primary mb-2">Gauthier Minor</h1>
+          <img src="images/no_padding-removebg-preview.png" alt="" />
           <div className="flex gap-2 mb-4">
             {socialLinks.map((social) => {
               const Icon = social.icon;
