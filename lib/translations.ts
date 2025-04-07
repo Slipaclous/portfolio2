@@ -157,6 +157,17 @@ export const translations = {
         dealerBlackjack: 'Dealer has Blackjack!'
       },
       bestScore: 'Best global score'
+    },
+    dashboard: {
+      title: "Admin Dashboard",
+      subtitle: "Statistics and metrics for your site",
+      totalVisitors: "Total Visitors",
+      pageViews: "Page Views",
+      averageTime: "Average Time",
+      bounceRate: "Bounce Rate",
+      lastUpdated: "Last Updated",
+      today: "Today",
+      perSession: "Per session"
     }
   },
   fr: {
@@ -317,6 +328,17 @@ export const translations = {
         dealerBlackjack: 'Le croupier a un Blackjack !'
       },
       bestScore: 'Meilleur score global'
+    },
+    dashboard: {
+      title: "Tableau de bord administrateur",
+      subtitle: "Statistiques et métriques de votre site",
+      totalVisitors: "Visiteurs totaux",
+      pageViews: "Pages vues",
+      averageTime: "Temps moyen",
+      bounceRate: "Taux de rebond",
+      lastUpdated: "Dernière mise à jour",
+      today: "Aujourd'hui",
+      perSession: "Par session"
     }
   },
 };
