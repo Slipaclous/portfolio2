@@ -26,7 +26,7 @@ export default function AdminDashboardPage() {
   // Protection de la route
   useEffect(() => {
     if (status === "unauthenticated") {
-      redirect("/");
+      redirect("/admin/login");
     }
   }, [status]);
 
@@ -111,7 +111,7 @@ export default function AdminDashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.totalVisitors}</div>
-              <p className="text-xs text-gray-500">{t.lastUpdated}: {stats.lastUpdated.toLocaleTimeString()}</p>
+              <p className="text-xs text-gray-500">{t.lastUpdated}: {new Date(stats.lastUpdated).toLocaleTimeString()}</p>
             </CardContent>
           </Card>
         </motion.div>
