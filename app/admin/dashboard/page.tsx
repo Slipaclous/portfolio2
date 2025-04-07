@@ -9,9 +9,13 @@ import { translations } from '@/lib/translations';
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+// Empêcher la génération statique de cette page
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function AdminDashboardPage() {
   const router = useRouter();
-  const session = useSession();
+  const { data: session, status } = useSession();
   const { language } = useLanguage();
   const t = translations[language].dashboard;
   const [stats, setStats] = useState({
@@ -26,10 +30,10 @@ export default function AdminDashboardPage() {
 
   // Protection de la route
   useEffect(() => {
-    if (session.status === "unauthenticated") {
+    if (status === "unauthenticated") {
       router.push("/admin/login");
     }
-  }, [session.status, router]);
+  }, [status, router]);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -47,14 +51,14 @@ export default function AdminDashboardPage() {
       }
     };
 
-    if (session.status === "authenticated") {
+    if (status === "authenticated") {
       fetchStats();
       const interval = setInterval(fetchStats, 300000);
       return () => clearInterval(interval);
     }
-  }, [session.status]);
+  }, [status]);
 
-  if (session.status === "loading" || loading) {
+  if (status === "loading" || loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
