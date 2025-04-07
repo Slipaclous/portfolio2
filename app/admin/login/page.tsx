@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Lock } from "lucide-react";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function AdminLoginPage() {
       } else {
         router.push("/admin/dashboard");
       }
-    } catch (error) {
+    } catch (err) {
       setError("Une erreur est survenue");
     } finally {
       setLoading(false);
@@ -43,42 +43,48 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">
-              Connexion Admin
-            </CardTitle>
+        <Card className="w-full max-w-md shadow-xl">
+          <CardHeader className="space-y-1">
+            <div className="flex items-center gap-2">
+              <Lock className="h-6 w-6 text-blue-500" />
+              <CardTitle className="text-2xl font-bold">Administration</CardTitle>
+            </div>
+            <CardDescription>Connectez-vous pour accéder au dashboard</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="username">Nom d'utilisateur</Label>
+                <label htmlFor="username" className="text-sm font-medium">
+                  Nom d'utilisateur
+                </label>
                 <Input
                   id="username"
                   name="username"
                   type="text"
                   required
-                  disabled={loading}
+                  placeholder="Entrez votre nom d'utilisateur"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Mot de passe</Label>
+                <label htmlFor="password" className="text-sm font-medium">
+                  Mot de passe
+                </label>
                 <Input
                   id="password"
                   name="password"
                   type="password"
                   required
-                  disabled={loading}
+                  placeholder="Entrez votre mot de passe"
                 />
               </div>
               {error && (
-                <div className="text-red-500 text-sm text-center">{error}</div>
+                <div className="text-red-500 text-sm">{error}</div>
               )}
               <Button
                 type="submit"
