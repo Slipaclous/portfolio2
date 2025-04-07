@@ -3,7 +3,10 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  images: { unoptimized: true },
+  images: {
+    domains: ['images.unsplash.com'],
+    unoptimized: true,
+  },
   async headers() {
     return [
       {
@@ -13,6 +16,19 @@ const nextConfig = {
           { key: 'Access-Control-Allow-Methods', value: 'GET, POST, PUT, DELETE, OPTIONS' },
           { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
         ],
+      },
+    ];
+  },
+  experimental: {
+    serverActions: true,
+  },
+  output: 'standalone',
+  async redirects() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/login',
+        permanent: true,
       },
     ];
   },
