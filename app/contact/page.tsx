@@ -46,10 +46,38 @@ export default function ContactPage() {
   const { language } = useLanguage();
   const t = translations[language];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -169,10 +197,26 @@ export default function ContactPage() {
                   type="submit"
                   className="w-full md:w-auto"
                   size="lg"
+                  disabled={isSubmitting}
                 >
-                  <Send className="mr-2 h-4 w-4" />
-                  {t.contact.form.send}
+                  {isSubmitting ? (
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      {t.contact.form.sending}
+                    </div>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-4 w-4" />
+                      {t.contact.form.send}
+                    </>
+                  )}
                 </Button>
+                {submitStatus === 'success' && (
+                  <p className="text-green-500 mt-4">{t.contact.form.success}</p>
+                )}
+                {submitStatus === 'error' && (
+                  <p className="text-red-500 mt-4">{t.contact.form.error}</p>
+                )}
               </form>
             </CardContent>
           </Card>

@@ -20,6 +20,7 @@ const menuItems = [
   { icon: FolderGit2, href: '/projects' },
   { icon: User, href: '/about' },
   { icon: Mail, href: '/contact' },
+  { icon: Gamepad, href: '/games' },
 ];
 
 const socialLinks = [

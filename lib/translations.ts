@@ -6,6 +6,7 @@ export const translations = {
       projects: 'Projects',
       about: 'About',
       contact: 'Contact',
+      games: 'Mini-Games',
     },
     hero: {
       iam: 'I am a',
@@ -57,6 +58,9 @@ export const translations = {
         email: 'Email',
         message: 'Message',
         send: 'Send Message',
+        sending: 'Sending...',
+        success: 'Message sent successfully! I\'ll get back to you soon.',
+        error: 'An error occurred. Please try again later.',
       },
     },
     interests: {
@@ -98,6 +102,61 @@ export const translations = {
           'Simply laughing'
         ]
       }
+    },
+    games: {
+      title: 'Mini-Games',
+      subtitle: 'Have fun with my collection of mini-games. Test your memory, thinking and agility!',
+      memory: {
+        title: 'Memory Game',
+        description: 'Test your memory by finding the pairs of cards',
+        moves: 'Moves',
+        score: 'Score',
+        newGame: 'New Game'
+      },
+      snake: {
+        title: 'Snake',
+        description: 'Guide the snake to eat food and grow',
+        score: 'Score',
+        best: 'Best',
+        pause: 'Pause',
+        resume: 'Resume',
+        gameOver: 'Game Over',
+        finalScore: 'Final Score',
+        newGame: 'New Game',
+        startGame: 'Start Game',
+        ready: 'Ready to play?',
+        instructions: 'Use arrows to direct the snake. Space to pause. R to restart.'
+      },
+      clicker: {
+        title: 'Clicker Game',
+        description: 'Click as fast as possible to earn points',
+        points: 'Points',
+        best: 'Best',
+        clickMe: 'Click me!',
+        reset: 'Reset',
+        addPoints: '+10 points'
+      },
+      blackjack: {
+        title: 'Blackjack',
+        description: 'Try your luck against the dealer in this classic card game',
+        score: 'Score',
+        best: 'Best',
+        dealer: 'Dealer',
+        player: 'Player',
+        hit: 'Hit',
+        stand: 'Stand',
+        startGame: 'Start Game',
+        newGame: 'New Game',
+        instructions: 'Try to get closer to 21 than the dealer without going over!',
+        bust: 'Bust! You went over 21!',
+        dealerBust: 'Dealer busts! You win!',
+        dealerWins: 'Dealer wins!',
+        playerWins: 'You win!',
+        push: 'Push! It\'s a tie!',
+        blackjack: 'Blackjack! You win!',
+        dealerBlackjack: 'Dealer has Blackjack!'
+      },
+      bestScore: 'Best global score'
     }
   },
   fr: {
@@ -107,6 +166,7 @@ export const translations = {
       projects: 'Projets',
       about: 'À propos',
       contact: 'Contact',
+      games: 'Mini-Jeux',
     },
     hero: {
       iam: 'Je suis',
@@ -158,6 +218,9 @@ export const translations = {
         email: 'Email',
         message: 'Message',
         send: 'Envoyer',
+        sending: 'Envoi en cours...',
+        success: 'Message envoyé avec succès ! Je vous répondrai bientôt.',
+        error: 'Une erreur est survenue. Veuillez réessayer plus tard.',
       },
     },
     interests: {
@@ -199,6 +262,61 @@ export const translations = {
           'Rire simplement'
         ]
       }
+    },
+    games: {
+      title: 'Mini-Jeux',
+      subtitle: 'Amusez-vous avec ma collection de mini-jeux. Testez votre mémoire, votre réflexion et votre agilité !',
+      memory: {
+        title: 'Memory Game',
+        description: 'Testez votre mémoire en trouvant les paires de cartes',
+        moves: 'Mouvements',
+        score: 'Score',
+        newGame: 'Nouvelle partie'
+      },
+      snake: {
+        title: 'Snake',
+        description: 'Guidez le serpent pour manger la nourriture et grandir',
+        score: 'Score',
+        best: 'Meilleur',
+        pause: 'Pause',
+        resume: 'Reprendre',
+        gameOver: 'Game Over',
+        finalScore: 'Score final',
+        newGame: 'Nouvelle partie',
+        startGame: 'Commencer',
+        ready: 'Prêt à jouer?',
+        instructions: 'Utilisez les flèches pour diriger le serpent. Espace pour pause. R pour recommencer.'
+      },
+      clicker: {
+        title: 'Clicker Game',
+        description: 'Cliquez le plus rapidement possible pour gagner des points',
+        points: 'Points',
+        best: 'Meilleur',
+        clickMe: 'Cliquez-moi !',
+        reset: 'Réinitialiser',
+        addPoints: '+10 points'
+      },
+      blackjack: {
+        title: 'Blackjack',
+        description: 'Tentez votre chance contre le croupier dans ce jeu de cartes classique',
+        score: 'Score',
+        best: 'Meilleur',
+        dealer: 'Croupier',
+        player: 'Joueur',
+        hit: 'Tirer',
+        stand: 'Rester',
+        startGame: 'Commencer',
+        newGame: 'Nouvelle partie',
+        instructions: 'Essayez d\'obtenir une main plus proche de 21 que le croupier sans dépasser !',
+        bust: 'Perdu ! Vous avez dépassé 21 !',
+        dealerBust: 'Le croupier a dépassé ! Vous gagnez !',
+        dealerWins: 'Le croupier gagne !',
+        playerWins: 'Vous gagnez !',
+        push: 'Égalité !',
+        blackjack: 'Blackjack ! Vous gagnez !',
+        dealerBlackjack: 'Le croupier a un Blackjack !'
+      },
+      bestScore: 'Meilleur score global'
     }
   },
 };
