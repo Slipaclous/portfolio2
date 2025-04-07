@@ -34,6 +34,7 @@ export default function AdminLoginPage() {
         setError("Identifiants invalides");
       } else {
         router.push("/admin/dashboard");
+        router.refresh();
       }
     } catch (err) {
       setError("Une erreur est survenue");
@@ -69,6 +70,7 @@ export default function AdminLoginPage() {
                   type="text"
                   required
                   placeholder="Entrez votre nom d'utilisateur"
+                  disabled={loading}
                 />
               </div>
               <div className="space-y-2">
@@ -81,6 +83,7 @@ export default function AdminLoginPage() {
                   type="password"
                   required
                   placeholder="Entrez votre mot de passe"
+                  disabled={loading}
                 />
               </div>
               {error && (
