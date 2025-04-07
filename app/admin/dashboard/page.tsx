@@ -7,10 +7,11 @@ import { Users, Eye, Clock, Globe, TrendingUp, Calendar } from "lucide-react";
 import { useLanguage } from '@/components/LanguageContext';
 import { translations } from '@/lib/translations';
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function AdminDashboardPage() {
-  const { data: session, status } = useSession();
+  const router = useRouter();
+  const session = useSession();
   const { language } = useLanguage();
   const t = translations[language].dashboard;
   const [stats, setStats] = useState({
@@ -25,10 +26,10 @@ export default function AdminDashboardPage() {
 
   // Protection de la route
   useEffect(() => {
-    if (status === "unauthenticated") {
-      redirect("/admin/login");
+    if (session.status === "unauthenticated") {
+      router.push("/admin/login");
     }
-  }, [status]);
+  }, [session.status, router]);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -46,14 +47,14 @@ export default function AdminDashboardPage() {
       }
     };
 
-    if (status === "authenticated") {
+    if (session.status === "authenticated") {
       fetchStats();
       const interval = setInterval(fetchStats, 300000);
       return () => clearInterval(interval);
     }
-  }, [status]);
+  }, [session.status]);
 
-  if (status === "loading" || loading) {
+  if (session.status === "loading" || loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
