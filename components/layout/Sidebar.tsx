@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/components/LanguageContext';
 import { translations } from '@/lib/translations';
+import { useSession } from 'next-auth/react';
+import { AdminNav } from './AdminNav';
 
 interface SidebarProps {
   isMobile?: boolean;
@@ -31,13 +33,16 @@ const socialLinks = [
 export default function Sidebar({ isMobile, onNavigate }: SidebarProps) {
   const pathname = usePathname();
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language].nav;
+  const { data: session } = useSession();
 
   const handleClick = () => {
     if (isMobile && onNavigate) {
       onNavigate();
     }
   };
+
+  const isActive = (path: string) => pathname === path;
 
   return (
     <aside className={cn(
@@ -81,29 +86,65 @@ export default function Sidebar({ isMobile, onNavigate }: SidebarProps) {
         </div>
         
         <nav className="space-y-1 flex-1">
-          {menuItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = pathname === item.href;
-            const navKey = item.href === '/' ? 'home' : item.href.replace('/', '');
-            const label = t.nav[navKey as keyof typeof t.nav];
-            
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={handleClick}
-                className={cn(
-                  'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors',
-                  'hover:bg-accent hover:text-accent-foreground',
-                  isActive ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'
-                )}
-              >
-                <Icon size={18} />
-                <span>{label}</span>
-              </Link>
-            );
-          })}
+          <div className="space-y-1">
+            <Link
+              href="/"
+              className={cn(
+                "flex items-center rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                isActive('/') ? "bg-accent" : "transparent"
+              )}
+            >
+              {t.home}
+            </Link>
+            <Link
+              href="/skills"
+              className={cn(
+                "flex items-center rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                isActive('/skills') ? "bg-accent" : "transparent"
+              )}
+            >
+              {t.skills}
+            </Link>
+            <Link
+              href="/projects"
+              className={cn(
+                "flex items-center rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                isActive('/projects') ? "bg-accent" : "transparent"
+              )}
+            >
+              {t.projects}
+            </Link>
+            <Link
+              href="/about"
+              className={cn(
+                "flex items-center rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                isActive('/about') ? "bg-accent" : "transparent"
+              )}
+            >
+              {t.about}
+            </Link>
+            <Link
+              href="/contact"
+              className={cn(
+                "flex items-center rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                isActive('/contact') ? "bg-accent" : "transparent"
+              )}
+            >
+              {t.contact}
+            </Link>
+            <Link
+              href="/games"
+              className={cn(
+                "flex items-center rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                isActive('/games') ? "bg-accent" : "transparent"
+              )}
+            >
+              {t.games}
+            </Link>
+          </div>
         </nav>
+
+        {session && <AdminNav />}
 
         <div className="mt-auto pt-4 border-t border-border">
           <p className="text-sm text-muted-foreground text-center">© 2024 All rights reserved</p>

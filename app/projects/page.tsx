@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,37 +9,63 @@ import { ExternalLink, Github, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/components/LanguageContext';
 import { translations } from '@/lib/translations';
 
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string | null;
+  githubUrl: string | null;
+  demoUrl: string | null;
+  technologies: string[];
+  featured: boolean;
+  createdAt: string;
+}
+
 // Données des projets (inchangées)
-const projects = [
+const staticProjects = [
   {
+    id: 'static-1',
     title: 'Rent a Book',
     description: 'The current business i work for , working now on upgrading it to the last version of prestashop and reworking the design aswell',
-    image: 'images/rentabook.png',
-    tags: ['Prestashop', 'PHP', 'CSS', 'JavaScript'],
-    demo: 'https://www.rentabook.be/fr/ecoles',
+    imageUrl: 'images/rentabook.png',
+    technologies: ['Prestashop', 'PHP', 'CSS', 'JavaScript'],
+    demoUrl: 'https://www.rentabook.be/fr/ecoles',
+    githubUrl: null,
+    featured: true,
+    createdAt: '2024-01-01T00:00:00.000Z'
   },
   {
+    id: 'static-2',
     title: 'Bosmans tyres',
     description: 'My first solo project for a tyres garage',
-    image: 'images/logo-pneus.png',
-    tags: ['NextJS', 'Bilingual', 'TailwindCSS'],
-    github: 'https://github.com/Slipaclous/bosmans-2.0',
-    demo: 'https://www.bosmansbandenpneus.com',
+    imageUrl: 'images/logo-pneus.png',
+    technologies: ['NextJS', 'Bilingual', 'TailwindCSS'],
+    githubUrl: 'https://github.com/Slipaclous/bosmans-2.0',
+    demoUrl: 'https://www.bosmansbandenpneus.com',
+    featured: true,
+    createdAt: '2024-01-02T00:00:00.000Z'
   },
   {
+    id: 'static-3',
     title: 'Bruxelles-propreté',
     description: 'I worked with a team on this website during my business internship , made in drupal',
-    image: 'images/arpgan.png',
-    tags: ['Drupal', 'Bootstrap', 'CSS'],
-    demo: 'https://arp-gan.be/fr',
+    imageUrl: 'images/arpgan.png',
+    technologies: ['Drupal', 'Bootstrap', 'CSS'],
+    demoUrl: 'https://arp-gan.be/fr',
+    githubUrl: null,
+    featured: true,
+    createdAt: '2024-01-03T00:00:00.000Z'
   },
   {
+    id: 'static-4',
     title: 'Fifty-one Enghien',
     description: 'Website for the fifty-one club Enghien. Made for my graduation project',
-    image: '/images/fiftyone.png',
-    tags: ['Symfony', 'JavaScript', 'MySQL', 'CSS', 'Sass'],
-    github: 'https://github.com/Slipaclous/fiftyone',
-    demo: 'https://fiftyone-enghien.com',
+    imageUrl: '/images/fiftyone.png',
+    technologies: ['Symfony', 'JavaScript', 'MySQL', 'CSS', 'Sass'],
+    githubUrl: 'https://github.com/Slipaclous/fiftyone',
+    demoUrl: 'https://fiftyone-enghien.com',
+    featured: true,
+    createdAt: '2024-01-04T00:00:00.000Z'
   }
 ];
 
@@ -94,6 +120,37 @@ export default function ProjectsPage() {
 
   const { language } = useLanguage();
   const t = translations[language];
+  const [dynamicProjects, setDynamicProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/api/projects');
+        const data = await response.json();
+        setDynamicProjects(data);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des projets:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  // Combiner les projets statiques et dynamiques
+  const allProjects = [...staticProjects, ...dynamicProjects].sort((a, b) => 
+    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-screen-2xl mx-auto px-4 lg:px-8 py-16 relative">
@@ -142,7 +199,7 @@ export default function ProjectsPage() {
         </motion.div>
       </motion.div>
 
-      {/* Grid des projets (inchangée) */}
+      {/* Grid des projets */}
       <motion.div
         ref={ref}
         variants={containerVariants}
@@ -150,9 +207,9 @@ export default function ProjectsPage() {
         animate={inView ? "visible" : "hidden"}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-10 relative z-10"
       >
-        {projects.map((project) => (
+        {allProjects.map((project) => (
           <motion.div
-            key={project.title}
+            key={project.id}
             variants={projectVariants}
             whileHover={{ y: -8, scale: 1.02 }}
             transition={{ duration: 0.3 }}
@@ -170,7 +227,7 @@ export default function ProjectsPage() {
                   className="relative z-10"
                 >
                   <img
-                    src={project.image}
+                    src={project.imageUrl}
                     alt={project.title}
                     className="object-contain w-[65%] h-auto transform group-hover:scale-110 transition-transform duration-500 drop-shadow-md group-hover:drop-shadow-lg"
                   />
@@ -178,7 +235,7 @@ export default function ProjectsPage() {
                 </motion.div>
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                   <span className="inline-flex items-center rounded-full bg-primary/30 px-3 py-1 text-xs font-medium text-primary shadow-sm">
-                    {project.tags[0]}
+                    {project.technologies[0]}
                   </span>
                 </div>
               </div>
@@ -195,25 +252,25 @@ export default function ProjectsPage() {
               </CardHeader>
               <CardContent className="relative pb-6">
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.slice(0, 4).map((tag, index) => (
+                  {project.technologies.slice(0, 4).map((tech, index) => (
                     <motion.span
-                      key={tag}
+                      key={tech}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.05 + 0.2 }}
                       className="px-2.5 py-1 bg-secondary/50 text-secondary-foreground rounded-md text-xs font-medium border border-border/30 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-200 transform hover:-translate-y-0.5"
                     >
-                      {tag}
+                      {tech}
                     </motion.span>
                   ))}
                 </div>
                 <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
               </CardContent>
               <CardFooter className="mt-auto pt-4 space-x-3 relative z-10">
-                {project.github && (
+                {project.githubUrl && (
                   <Button variant="outline" size="sm" className="flex-1 border-border/60 hover:border-primary/70 hover:bg-primary/5 shadow-sm transform transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md" asChild>
                     <a
-                      href={project.github}
+                      href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center group/btn"
@@ -230,24 +287,26 @@ export default function ProjectsPage() {
                     </a>
                   </Button>
                 )}
-                <Button size="sm" className="flex-1 bg-primary hover:bg-primary/90 shadow-sm transform transition-all duration-200 hover:-translate-y-0.5 hover:shadow-mid" asChild>
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center group/demo"
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4 transition-transform duration-300 group-hover/demo:rotate-12" />
-                    <span className="relative overflow-hidden">
-                      <span className="inline-block transform transition-transform duration-300 group-hover/demo:translate-y-full">
-                        {t.projects.viewDemo}
+                {project.demoUrl && (
+                  <Button size="sm" className="flex-1 bg-primary hover:bg-primary/90 shadow-sm transform transition-all duration-200 hover:-translate-y-0.5 hover:shadow-mid" asChild>
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center group/demo"
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4 transition-transform duration-300 group-hover/demo:rotate-12" />
+                      <span className="relative overflow-hidden">
+                        <span className="inline-block transform transition-transform duration-300 group-hover/demo:translate-y-full">
+                          {t.projects.viewDemo}
+                        </span>
+                        <span className="absolute top-0 left-0 inline-block transform -translate-y-full group-hover/demo:translate-y-0 transition-transform duration-300">
+                          {t.projects.viewDemo}
+                        </span>
                       </span>
-                      <span className="absolute top-0 left-0 inline-block transform -translate-y-full group-hover/demo:translate-y-0 transition-transform duration-300">
-                        {t.projects.viewDemo}
-                      </span>
-                    </span>
-                  </a>
-                </Button>
+                    </a>
+                  </Button>
+                )}
               </CardFooter>
             </Card>
           </motion.div>

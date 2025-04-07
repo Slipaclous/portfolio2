@@ -1,16 +1,16 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Sidebar from '@/components/layout/Sidebar';
-import MobileNav from '@/components/layout/MobileNav';
-import { ThemeProvider } from '@/components/theme-provider';
-import { LanguageProvider } from '@/components/LanguageContext';
+import "./globals.css";
+import { Providers } from "@/components/Providers";
+import Sidebar from "@/components/layout/Sidebar";
+import MobileNav from "@/components/layout/MobileNav";
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Gauthier Minor | Web Developer',
-  description: 'Professional portfolio of Gauthier Minor, Web Developer',
+  title: 'Portfolio',
+  description: 'Mon portfolio personnel',
   icons: {
     icon: [
       { url: 'images/favicon.ico' },
@@ -19,33 +19,30 @@ export const metadata: Metadata = {
     ],
     apple: { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
   },
-
-  
 };
+
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
       <meta name="google-site-verification" content="X3XaMATl8UlFkcSJu2vNjuEKWI-nMdEX-QVhaz9ehPI" />
       </head>
       <body className={inter.className} suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-          <LanguageProvider>
-            <div className="flex min-h-screen">
-              <div className="dark">
-                <Sidebar />
-                <MobileNav />
-              </div>
-              <main className="flex-1 md:ml-64 p-8 bg-background">
-                {children}
-              </main>
+        <Providers>
+          <div className="flex min-h-screen">
+            <div className="dark">
+              <Sidebar />
+              <MobileNav />
             </div>
-          </LanguageProvider>
-        </ThemeProvider>
+            <main className="flex-1 md:ml-64 p-8 bg-background">
+              {children}
+            </main>
+          </div>
+        </Providers>
       </body>
     </html>
   );

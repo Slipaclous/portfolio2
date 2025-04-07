@@ -157,6 +157,22 @@ export const translations = {
         dealerBlackjack: 'Dealer has Blackjack!'
       },
       bestScore: 'Best global score'
+    },
+    dashboard: {
+      title: "Dashboard",
+      subtitle: "Real-time statistics of your website",
+      totalVisitors: "Total Visitors",
+      activeUsers: "Active Users",
+      averageTime: "Average Time",
+      pageViews: "Page Views",
+      growth: "Growth",
+      peakHours: "Peak Hours",
+      lastUpdated: "Last Updated",
+      realtime: "Real-time",
+      perSession: "Per session",
+      today: "Today",
+      vsLastWeek: "vs last week",
+      mostActive: "Most active period"
     }
   },
   fr: {
@@ -317,6 +333,22 @@ export const translations = {
         dealerBlackjack: 'Le croupier a un Blackjack !'
       },
       bestScore: 'Meilleur score global'
+    },
+    dashboard: {
+      title: "Tableau de bord",
+      subtitle: "Statistiques en temps réel de votre site",
+      totalVisitors: "Visiteurs totaux",
+      activeUsers: "Utilisateurs actifs",
+      averageTime: "Temps moyen",
+      pageViews: "Pages vues",
+      growth: "Croissance",
+      peakHours: "Heures de pointe",
+      lastUpdated: "Dernière mise à jour",
+      realtime: "En temps réel",
+      perSession: "Par session",
+      today: "Aujourd'hui",
+      vsLastWeek: "vs semaine dernière",
+      mostActive: "Période la plus active"
     }
   },
 };
