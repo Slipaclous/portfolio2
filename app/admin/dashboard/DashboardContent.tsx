@@ -6,12 +6,10 @@ import { motion } from "framer-motion";
 import { Users, Eye, Clock, Globe, TrendingUp, Calendar } from "lucide-react";
 import { useLanguage } from '@/components/LanguageContext';
 import { translations } from '@/lib/translations';
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function DashboardContent() {
   const router = useRouter();
-  const session = useSession();
   const { language } = useLanguage();
   const t = translations[language].dashboard;
   const [stats, setStats] = useState({
@@ -24,18 +22,15 @@ export default function DashboardContent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Protection de la route
-  useEffect(() => {
-    if (session.status === "unauthenticated") {
-      router.push("/admin/login");
-    }
-  }, [session.status, router]);
-
   useEffect(() => {
     const fetchStats = async () => {
       try {
         const response = await fetch('/api/admin/stats');
         if (!response.ok) {
+          if (response.status === 401) {
+            router.push('/admin/login');
+            return;
+          }
           throw new Error('Failed to fetch stats');
         }
         const data = await response.json();
@@ -47,14 +42,12 @@ export default function DashboardContent() {
       }
     };
 
-    if (session.status === "authenticated") {
-      fetchStats();
-      const interval = setInterval(fetchStats, 300000);
-      return () => clearInterval(interval);
-    }
-  }, [session.status]);
+    fetchStats();
+    const interval = setInterval(fetchStats, 300000);
+    return () => clearInterval(interval);
+  }, [router]);
 
-  if (session.status === "loading" || loading) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>

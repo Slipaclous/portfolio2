@@ -1,5 +1,5 @@
 import DashboardContent from './DashboardContent';
 
-export default function AdminDashboardPage() {
+export default function DashboardPage() {
   return <DashboardContent />;
 } 
