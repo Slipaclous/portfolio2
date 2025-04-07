@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 
 export default function DashboardContent() {
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const session = useSession();
   const { language } = useLanguage();
   const t = translations[language].dashboard;
   const [stats, setStats] = useState({
@@ -26,10 +26,10 @@ export default function DashboardContent() {
 
   // Protection de la route
   useEffect(() => {
-    if (status === "unauthenticated") {
+    if (session.status === "unauthenticated") {
       router.push("/admin/login");
     }
-  }, [status, router]);
+  }, [session.status, router]);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -47,14 +47,14 @@ export default function DashboardContent() {
       }
     };
 
-    if (status === "authenticated") {
+    if (session.status === "authenticated") {
       fetchStats();
       const interval = setInterval(fetchStats, 300000);
       return () => clearInterval(interval);
     }
-  }, [status]);
+  }, [session.status]);
 
-  if (status === "loading" || loading) {
+  if (session.status === "loading" || loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
