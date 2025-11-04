@@ -2,11 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Mail, MessageSquare, Phone, Send, Github, Linkedin, ExternalLink } from 'lucide-react';
+import { Mail, Send, Linkedin, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '@/components/LanguageContext';
 import { translations } from '@/lib/translations';
@@ -17,16 +13,12 @@ const contactMethods = [
     title: 'email',
     value: 'gauthier.minor@gmail.com',
     href: 'mailto:gauthier.minor@gmail.com',
-    color: 'text-blue-500',
-    bgColor: 'bg-blue-500/10',
   },
   {
     icon: Linkedin,
     title: 'social',
     value: 'LinkedIn Profile',
     href: 'https://be.linkedin.com/in/gauthier-minor-a0a4a229b',
-    color: 'text-purple-500',
-    bgColor: 'bg-purple-500/10',
     external: true,
   },
 ];
@@ -81,145 +73,218 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-12"
-      >
-        <h1 className="text-4xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-          {t.contact.title}
-        </h1>
-      </motion.div>
-
-      <div className="max-w-5xl mx-auto px-4">
+    <div className="min-h-screen bg-[#0a0a0a] py-20 px-6">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          {/* Label avec ligne */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex items-center gap-4 mb-6"
+          >
+            <div className="h-px w-12 bg-gradient-to-r from-cyan-500 to-transparent" />
+            <span className="text-cyan-400 text-sm font-mono tracking-wider uppercase">
+              Contact
+            </span>
+          </motion.div>
+
+          {/* Titre */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-5xl md:text-6xl font-bold text-white mb-4"
+          >
+            {t.contact.title}
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-lg text-neutral-400"
+          >
+            Discutons de votre projet
+          </motion.p>
+        </motion.div>
+
+        {/* Contact methods */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12"
         >
           {contactMethods.map((method, index) => {
             const Icon = method.icon;
             return (
               <motion.div
                 key={method.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                className="group"
               >
-                <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
-                      <div className={`p-3 rounded-xl ${method.bgColor} transform group-hover:scale-110 transition-all duration-300`}>
-                        <Icon className={`h-6 w-6 ${method.color}`} />
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-lg capitalize mb-1">
-                        </h3>
-                        <a
-                          href={method.href}
-                          target={method.external ? "_blank" : undefined}
-                          rel={method.external ? "noopener noreferrer" : undefined}
-                          className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
-                        >
-                          {method.value}
-                          {method.external && <ExternalLink className="h-3 w-3" />}
-                        </a>
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-cyan-500/10 rounded-lg opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 -z-10" />
+
+                {/* Card */}
+                <a
+                  href={method.href}
+                  target={method.external ? "_blank" : undefined}
+                  rel={method.external ? "noopener noreferrer" : undefined}
+                  className="relative block p-5 rounded-lg border border-neutral-800 bg-neutral-950/50 backdrop-blur-sm group-hover:border-cyan-500/50 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-4">
+                    {/* Icon avec glow */}
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-cyan-500/20 blur-lg rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="relative p-3 rounded-lg bg-neutral-900 border border-neutral-800 group-hover:border-cyan-500/50 transition-colors">
+                        <Icon className="h-5 w-5 text-cyan-400" />
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+
+                    {/* Text */}
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 text-sm font-medium text-neutral-300 group-hover:text-white transition-colors">
+                        {method.value}
+                        {method.external && <ExternalLink className="h-3 w-3" />}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom line effect */}
+                  <div className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full bg-gradient-to-r from-cyan-500 to-transparent transition-all duration-500" />
+                </a>
               </motion.div>
             );
           })}
         </motion.div>
 
+        {/* Form */}
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="relative group"
         >
-          <Card className="overflow-hidden">
-            <CardHeader className="text-center pt-8">
-              <CardTitle className="text-2xl font-bold mb-2">
+          {/* Glow effect */}
+          <div className="absolute inset-0 bg-cyan-500/10 rounded-xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-700 -z-10" />
+
+          {/* Card */}
+          <div className="relative rounded-xl border border-neutral-800 bg-neutral-950/80 backdrop-blur-sm p-8 group-hover:border-cyan-500/50 transition-colors duration-500">
+            {/* Form header */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-white mb-2">
                 {t.contact.form.title}
-              </CardTitle>
-              <p className="text-muted-foreground">
+              </h2>
+              <p className="text-sm text-neutral-400">
                 {t.contact.form.subtitle}
               </p>
-            </CardHeader>
-            <CardContent className="p-6">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium">
-                      {t.contact.form.name}
-                    </label>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="bg-accent/50 border-accent"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium">
-                      {t.contact.form.email}
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="bg-accent/50 border-accent"
-                      required
-                    />
-                  </div>
-                </div>
+            </div>
+
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Name */}
                 <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium">
-                    {t.contact.form.message}
+                  <label htmlFor="name" className="block text-sm font-medium text-neutral-300">
+                    {t.contact.form.name}
                   </label>
-                  <Textarea
-                    id="message"
-                    rows={6}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="bg-accent/50 border-accent resize-none"
+                  <input
+                    id="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 text-white placeholder:text-neutral-500 focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                    placeholder="Votre nom"
                     required
                   />
                 </div>
-                <Button
-                  type="submit"
-                  className="w-full md:w-auto"
-                  size="lg"
-                  disabled={isSubmitting}
+
+                {/* Email */}
+                <div className="space-y-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-neutral-300">
+                    {t.contact.form.email}
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 text-white placeholder:text-neutral-500 focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                    placeholder="votre@email.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Message */}
+              <div className="space-y-2">
+                <label htmlFor="message" className="block text-sm font-medium text-neutral-300">
+                  {t.contact.form.message}
+                </label>
+                <textarea
+                  id="message"
+                  rows={6}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 text-white placeholder:text-neutral-500 focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all resize-none"
+                  placeholder="Parlez-moi de votre projet..."
+                  required
+                />
+              </div>
+
+              {/* Submit button */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-cyan-500/10 text-cyan-400 rounded-lg border border-cyan-500/50 font-medium hover:bg-cyan-500/20 hover:shadow-[0_0_30px_rgba(34,211,238,0.4)] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin" />
+                    {t.contact.form.sending}
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4" />
+                    {t.contact.form.send}
+                  </>
+                )}
+              </button>
+
+              {/* Status messages */}
+              {submitStatus === 'success' && (
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-sm text-cyan-400 flex items-center gap-2"
                 >
-                  {isSubmitting ? (
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      {t.contact.form.sending}
-                    </div>
-                  ) : (
-                    <>
-                      <Send className="mr-2 h-4 w-4" />
-                      {t.contact.form.send}
-                    </>
-                  )}
-                </Button>
-                {submitStatus === 'success' && (
-                  <p className="text-green-500 mt-4">{t.contact.form.success}</p>
-                )}
-                {submitStatus === 'error' && (
-                  <p className="text-red-500 mt-4">{t.contact.form.error}</p>
-                )}
-              </form>
-            </CardContent>
-          </Card>
+                  <span className="h-2 w-2 rounded-full bg-cyan-400" />
+                  {t.contact.form.success}
+                </motion.p>
+              )}
+              {submitStatus === 'error' && (
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-sm text-red-400 flex items-center gap-2"
+                >
+                  <span className="h-2 w-2 rounded-full bg-red-400" />
+                  {t.contact.form.error}
+                </motion.p>
+              )}
+            </form>
+          </div>
         </motion.div>
       </div>
     </div>

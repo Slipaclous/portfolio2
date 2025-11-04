@@ -33,14 +33,14 @@ export default function RootLayout({
       <meta name="google-site-verification" content="X3XaMATl8UlFkcSJu2vNjuEKWI-nMdEX-QVhaz9ehPI" />
       </head>
       <body className={inter.className} suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <LanguageProvider>
             <div className="flex min-h-screen">
               <div className="dark">
                 <Sidebar />
                 <MobileNav />
               </div>
-              <main className="flex-1 md:ml-64 p-8 bg-background">
+              <main className="flex-1 bg-dark md:ml-64 p-8 bg-background">
                 {children}
               </main>
             </div>

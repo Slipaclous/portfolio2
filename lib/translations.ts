@@ -45,6 +45,13 @@ export const translations = {
       subtitle: 'Explore my latest work and side projects. Each project represents my passion for creating innovative and user-friendly web applications.',
       viewCode: 'Code',
       viewDemo: 'Visit Website',
+      mgEvent: 'A personal project for creating event invitation websites, featuring a complete backend system built with Node.js and PostgreSQL',
+      amarea: 'A professional website developed for a wedding planner, showcasing their services and portfolio',
+      leonardi: 'A professional website for a podiatry practice, providing information about services and online booking',
+      rentabook: 'The current business I work for, working now on upgrading it to the last version of prestashop and reworking the design as well',
+      bosmans: 'My first solo project for a tyres garage',
+      bruxelles: 'I worked with a team on this website during my business internship, made in drupal',
+      fiftyone: 'Website for the fifty-one club Enghien. Made for my graduation project'
     },
     contact: {
       title: 'Get in Touch',
@@ -219,6 +226,19 @@ export const translations = {
       contact: 'Contact',
       games: 'Mini-Jeux',
     },
+    projects: {
+      title: 'Projets en Vedette',
+      subtitle: 'Découvrez mes derniers travaux et projets personnels. Chaque projet représente ma passion pour la création d\'applications web innovantes et conviviales.',
+      viewCode: 'Code',
+      viewDemo: 'Visiter le Site',
+      mgEvent: 'Un projet personnel de création de sites web d\'invitations pour événements, avec un système backend complet construit avec Node.js et PostgreSQL',
+      amarea: 'Un site web professionnel développé pour une wedding planneuse, mettant en valeur ses services et son portfolio',
+      leonardi: 'Un site web professionnel pour un cabinet de podologie, fournissant des informations sur les services et la prise de rendez-vous en ligne',
+      rentabook: 'L\'entreprise pour laquelle je travaille actuellement, travaillant sur la mise à jour vers la dernière version de Prestashop et la refonte du design',
+      bosmans: 'Mon premier projet en solo pour un garage de pneus',
+      bruxelles: 'J\'ai travaillé avec une équipe sur ce site pendant mon stage en entreprise, réalisé avec Drupal',
+      fiftyone: 'Site web pour le club Fifty-one Enghien. Réalisé pour mon projet de fin d\'études'
+    },
     hero: {
       iam: 'Je suis',
       roles: ['Developer', 'Maker', 'Dreamer', 'Gamer'],
@@ -250,12 +270,6 @@ export const translations = {
         tools: 'Outils & Frameworks',
       },
       technologies: 'technologies',
-    },
-    projects: {
-      title: 'Projets en vedette',
-      subtitle: 'Découvrez mes derniers travaux et projets personnels. Chaque projet représente ma passion pour la création d\'applications web innovantes et conviviales.',
-      viewCode: 'Code',
-      viewDemo: 'Visiter le site',
     },
     contact: {
       title: 'Me Contacter',

@@ -8,43 +8,40 @@ export function SkillsHeader() {
   const { language } = useLanguage();
   const t = translations[language];
 
-  const titleVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-      },
-    },
-  };
-
-  const letterVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={titleVariants}
-      className="text-center py-8 md:py-12"
-    >
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-green-500 to-purple-500">
-        {t.skills.title.split('').map((char, index) => (
-          <motion.span key={index} variants={letterVariants}>
-            {char}
-          </motion.span>
-        ))}
-      </h1>
+    <div className="mb-16">
+      {/* Label avec ligne */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        className="flex items-center gap-4 mb-6"
+      >
+        <div className="h-px w-12 bg-gradient-to-r from-cyan-500 to-transparent" />
+        <span className="text-cyan-400 text-sm font-mono tracking-wider uppercase">
+          Skills
+        </span>
+      </motion.div>
+
+      {/* Titre */}
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="text-5xl md:text-6xl font-bold text-white mb-6"
+      >
+        {t.skills.title}
+      </motion.h1>
+
+      {/* Sous-titre */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto"
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="text-lg text-neutral-400 max-w-2xl"
       >
         {t.skills.subtitle}
       </motion.p>
-    </motion.div>
+    </div>
   );
 }

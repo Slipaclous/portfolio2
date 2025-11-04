@@ -13,41 +13,56 @@ export default function SkillsPage() {
   });
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] relative overflow-hidden">
-  {/* Background gradient with subtle noise */}
-  <div className="absolute inset-0 bg-gradient-to-br from-background via-accent/20 to-background opacity-90 backdrop-blur-sm" />
-  {/* Optional subtle overlay */}
-  <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 pointer-events-none" />
-  
-  {/* Content */}
-  <div className="relative h-full p-8 md:p-12">
-    <SkillsHeader />
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: { staggerChildren: 0.1 },
-        },
-      }}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
-    >
-      {skills.map((category) => (
-        <SkillCard
-          key={category.category}
-          category={category.category}
-          icon={category.icon}
-          color={category.color}
-          bgColor={category.bgColor}
-          skills={category.skills}
-          inView={inView}
+    <div className="min-h-screen bg-[#0a0a0a] relative overflow-hidden">
+      {/* Animated grid background */}
+      <div className="absolute inset-0 opacity-10">
+        <div 
+          className="absolute inset-0" 
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgb(34, 211, 238, 0.1) 1px, transparent 1px),
+              linear-gradient(to bottom, rgb(34, 211, 238, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }} 
         />
-      ))}
-    </motion.div>
-  </div>
-</div>
+      </div>
+
+      {/* Radial gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-radial from-cyan-500/5 via-transparent to-transparent" />
+      
+      {/* Content */}
+      <div className="relative py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <SkillsHeader />
+          
+          <motion.div
+            ref={ref}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.1 },
+              },
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"
+          >
+            {skills.map((category) => (
+              <SkillCard
+                key={category.category}
+                category={category.category}
+                icon={category.icon}
+                color={category.color}
+                bgColor={category.bgColor}
+                skills={category.skills}
+                inView={inView}
+              />
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </div>
   );
 }

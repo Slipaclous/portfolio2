@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Card, CardContent } from '@/components/ui/card';
 import { SkillItem } from './SkillItem';
 import { type SkillCategory } from '../data/skills';
 import { LucideIcon } from 'lucide-react';
@@ -18,59 +17,67 @@ interface SkillCardProps {
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.6,
     },
   },
 };
+
 export function SkillCard({ category, icon: Icon, color, bgColor, skills, inView }: SkillCardProps) {
   const { language } = useLanguage();
   const t = translations[language];
 
   return (
-    <motion.div
+    <motion.article
       variants={itemVariants}
-      className="h-full transform transition-transform duration-300 hover:-translate-y-2"
-      whileHover={{ scale: 1.02 }}
+      className="group"
     >
-      <Card
-        className="h-full overflow-hidden group hover:shadow-2xl transition-all duration-300 relative bg-gradient-to-br from-background to-accent/10 border border-border/50"
-        aria-label={`Category: ${category}`}
-      >
-        <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none ${bgColor} mix-blend-overlay`} />
-        <div className={`absolute top-0 left-0 w-2 h-full ${bgColor} opacity-75 group-hover:opacity-100 transition-opacity`} />
-        <CardContent className="p-5">
-          <div className="flex items-center gap-4 mb-5">
-            <div className={`p-3 rounded-xl ${bgColor} transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 relative shadow-md`}>
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/30 to-transparent opacity-70" />
-              <Icon className={`h-7 w-7 ${color}`} />
-            </div>
-            <div>
-              <h2 className="text-xl md:text-2xl font-bold group-hover:text-primary transition-colors">
-                {t.skills.categories[category.toLowerCase().replace(' & ', '_') as keyof typeof t.skills.categories]}
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                {skills.length} {t.skills.technologies}
-              </p>
+      {/* Glow effect on hover */}
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 -z-10" />
+      
+      {/* Card */}
+      <div className="relative h-full rounded-xl border border-neutral-800 bg-neutral-950/50 backdrop-blur-sm p-6 group-hover:border-cyan-500/50 transition-all duration-500">
+        {/* Header */}
+        <div className="flex items-center gap-4 mb-6">
+          {/* Icon avec glow */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-cyan-500/20 blur-lg rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="relative p-3 rounded-lg bg-neutral-900 border border-neutral-800 group-hover:border-cyan-500/50 transition-colors duration-300">
+              <Icon className="h-6 w-6 text-cyan-400" />
             </div>
           </div>
-          <div className="grid gap-3">
-            {skills.map((skill, index) => (
-              <SkillItem
-                key={skill.name}
-                skill={skill}
-                color={color}
-                index={index}
-                inView={inView}
-              />
-            ))}
+
+          {/* Title */}
+          <div>
+            <h2 className="text-xl font-bold text-white mb-1">
+              {t.skills.categories[category.toLowerCase().replace(' & ', '_') as keyof typeof t.skills.categories]}
+            </h2>
+            <p className="text-sm text-neutral-500 font-mono">
+              {skills.length} {t.skills.technologies}
+            </p>
           </div>
-        </CardContent>
-      </Card>
-    </motion.div>
+        </div>
+
+        {/* Skills list */}
+        <div className="space-y-2">
+          {skills.map((skill, index) => (
+            <SkillItem
+              key={skill.name}
+              skill={skill}
+              color={color}
+              index={index}
+              inView={inView}
+            />
+          ))}
+        </div>
+
+        {/* Bottom decorative line */}
+        <div className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full bg-gradient-to-r from-cyan-500 to-transparent transition-all duration-700" />
+      </div>
+    </motion.article>
   );
 }
