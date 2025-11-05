@@ -1,4 +1,6 @@
-export const translations = {
+import { Translation, Language } from './types';
+
+export const translations: Record<Language, Translation> = {
   en: {
     nav: {
       home: 'Home',
@@ -43,6 +45,11 @@ export const translations = {
     projects: {
       title: 'Featured Projects',
       subtitle: 'Explore my latest work and side projects. Each project represents my passion for creating innovative and user-friendly web applications.',
+      cta: {
+        title: 'Interested in working together?',
+        subtitle: 'I\'m available for freelance and contract work. Get in touch to discuss your project.',
+        button: 'Contact me'
+      },
       viewCode: 'Code',
       viewDemo: 'Visit Website',
       mgEvent: 'A personal project for creating event invitation websites, featuring a complete backend system built with Node.js and PostgreSQL',
@@ -55,6 +62,7 @@ export const translations = {
     },
     contact: {
       title: 'Get in Touch',
+      subtitle: 'Talk about your project and let\'s find the best way to work together.',
       email: 'Email',
       phone: 'Phone',
       social: 'Social',
@@ -62,8 +70,11 @@ export const translations = {
         title: 'Send a Message',
         subtitle: 'Fill out the form below and I\'ll get back to you as soon as possible.',
         name: 'Name',
+        namePlaceholder: 'Your name',
         email: 'Email',
+        emailPlaceholder: 'your@email.com',
         message: 'Message',
+        messagePlaceholder: 'Tell me about your project...',
         send: 'Send Message',
         sending: 'Sending...',
         success: 'Message sent successfully! I\'ll get back to you soon.',
@@ -181,40 +192,6 @@ export const translations = {
       about: "About",
       projects: "Projects",
       contact: "Contact",
-      admin: "Admin",
-      dashboard: "Dashboard",
-      manageProjects: "Manage Projects",
-      logout: "Logout",
-    },
-    admin: {
-      dashboard: {
-        title: "Dashboard",
-        overview: "Overview",
-        projects: "Projects",
-        analytics: "Analytics",
-        totalVisitors: "Total Visitors",
-        lastUpdated: "Last Updated",
-        analyticsTitle: "Advanced Analytics",
-        analyticsDescription: "Detailed visitor statistics",
-        comingSoon: "Coming soon",
-      },
-      projects: {
-        addProject: "Add Project",
-        editProject: "Edit Project",
-        addDescription: "Add a new project to your portfolio",
-        editDescription: "Edit project details",
-        title: "Title",
-        description: "Description",
-        imageUrl: "Image URL",
-        technologies: "Technologies",
-        githubUrl: "GitHub URL",
-        liveUrl: "Live URL",
-        add: "Add",
-        save: "Save",
-        cancel: "Cancel",
-        loading: "Loading...",
-        confirmDelete: "Are you sure you want to delete this project?",
-      },
     },
   },
   fr: {
@@ -225,19 +202,6 @@ export const translations = {
       about: 'À propos',
       contact: 'Contact',
       games: 'Mini-Jeux',
-    },
-    projects: {
-      title: 'Projets en Vedette',
-      subtitle: 'Découvrez mes derniers travaux et projets personnels. Chaque projet représente ma passion pour la création d\'applications web innovantes et conviviales.',
-      viewCode: 'Code',
-      viewDemo: 'Visiter le Site',
-      mgEvent: 'Un projet personnel de création de sites web d\'invitations pour événements, avec un système backend complet construit avec Node.js et PostgreSQL',
-      amarea: 'Un site web professionnel développé pour une wedding planneuse, mettant en valeur ses services et son portfolio',
-      leonardi: 'Un site web professionnel pour un cabinet de podologie, fournissant des informations sur les services et la prise de rendez-vous en ligne',
-      rentabook: 'L\'entreprise pour laquelle je travaille actuellement, travaillant sur la mise à jour vers la dernière version de Prestashop et la refonte du design',
-      bosmans: 'Mon premier projet en solo pour un garage de pneus',
-      bruxelles: 'J\'ai travaillé avec une équipe sur ce site pendant mon stage en entreprise, réalisé avec Drupal',
-      fiftyone: 'Site web pour le club Fifty-one Enghien. Réalisé pour mon projet de fin d\'études'
     },
     hero: {
       iam: 'Je suis',
@@ -271,8 +235,27 @@ export const translations = {
       },
       technologies: 'technologies',
     },
+    projects: {
+      title: 'Projets en vedette',
+      subtitle: 'Découvrez mes derniers travaux et projets personnels. Chaque projet représente ma passion pour la création d\'applications web innovantes et conviviales.',
+      cta: {
+        title: 'Intéressé par une collaboration ?',
+        subtitle: 'Je suis disponible pour des missions freelance et contractuelles. Contactez-moi pour discuter de votre projet.',
+        button: 'Me contacter'
+      },
+      viewCode: 'Code',
+      viewDemo: 'Visiter le site',
+      mgEvent: 'Un projet personnel de création de sites web d\'invitations pour événements, avec un système backend complet construit avec Node.js et PostgreSQL',
+      amarea: 'Un site web professionnel développé pour une wedding planneuse, mettant en valeur ses services et son portfolio',
+      leonardi: 'Un site web professionnel pour un cabinet de podologie, fournissant des informations sur les services et la prise de rendez-vous en ligne',
+      rentabook: 'L\'entreprise pour laquelle je travaille actuellement, travaillant sur la mise à jour vers la dernière version de Prestashop et la refonte du design',
+      bosmans: 'Mon premier projet en solo pour un garage de pneus',
+      bruxelles: 'J\'ai travaillé avec une équipe sur ce site pendant mon stage en entreprise, réalisé avec Drupal',
+      fiftyone: 'Site web pour le club Fifty-one Enghien. Réalisé pour mon projet de fin d\'études'
+    },
     contact: {
       title: 'Me Contacter',
+      subtitle: 'Parlez de votre projet et trouvons la meilleure façon de travailler ensemble.',
       email: 'Email',
       phone: 'Téléphone',
       social: 'Social',
@@ -280,8 +263,11 @@ export const translations = {
         title: 'Envoyer un message',
         subtitle: 'Remplissez le formulaire ci-dessous et je vous répondrai dès que possible.',
         name: 'Nom',
+        namePlaceholder: 'Votre nom',
         email: 'Email',
+        emailPlaceholder: 'votre@email.com',
         message: 'Message',
+        messagePlaceholder: 'Parlez-moi de votre projet...',
         send: 'Envoyer',
         sending: 'Envoi en cours...',
         success: 'Message envoyé avec succès ! Je vous répondrai bientôt.',
@@ -399,43 +385,8 @@ export const translations = {
       about: "À propos",
       projects: "Projets",
       contact: "Contact",
-      admin: "Administration",
-      dashboard: "Tableau de bord",
-      manageProjects: "Gérer les projets",
-      logout: "Déconnexion",
-    },
-    admin: {
-      dashboard: {
-        title: "Tableau de bord",
-        overview: "Vue d'ensemble",
-        projects: "Projets",
-        analytics: "Analytiques",
-        totalVisitors: "Total des visiteurs",
-        lastUpdated: "Dernière mise à jour",
-        analyticsTitle: "Analytiques avancées",
-        analyticsDescription: "Statistiques détaillées sur les visiteurs",
-        comingSoon: "Bientôt disponible",
-      },
-      projects: {
-        addProject: "Ajouter un projet",
-        editProject: "Modifier le projet",
-        addDescription: "Ajoutez un nouveau projet à votre portfolio",
-        editDescription: "Modifiez les détails du projet",
-        title: "Titre",
-        description: "Description",
-        imageUrl: "URL de l'image",
-        technologies: "Technologies",
-        githubUrl: "URL GitHub",
-        liveUrl: "URL du site",
-        add: "Ajouter",
-        save: "Enregistrer",
-        cancel: "Annuler",
-        loading: "Chargement...",
-        confirmDelete: "Êtes-vous sûr de vouloir supprimer ce projet ?",
-      },
     },
   },
 };
 
-export type Language = 'en' | 'fr';
-export type TranslationKey = keyof typeof translations.en;
+// translations typed via lib/types.ts

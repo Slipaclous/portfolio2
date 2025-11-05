@@ -1,3 +1,5 @@
+export type Language = 'en' | 'fr';
+
 export interface Translation {
   nav: {
     home: string;
@@ -40,41 +42,120 @@ export interface Translation {
     subtitle: string;
     viewCode: string;
     viewDemo: string;
-    mgEvent: string;
-    amarea: string;
-    leonardi: string;
-    rentabook: string;
-    bosmans: string;
-    bruxelles: string;
-    fiftyone: string;
+    // individual project short descriptions (optional)
+    mgEvent?: string;
+    amarea?: string;
+    leonardi?: string;
+    rentabook?: string;
+    bosmans?: string;
+    bruxelles?: string;
+    fiftyone?: string;
+    // CTA for projects page
+    cta?: {
+      title?: string;
+      subtitle?: string;
+      button?: string;
+    };
   };
   contact: {
     title: string;
+    subtitle?: string;
+    email: string;
+    phone: string;
+    social: string;
+    form: {
+      title: string;
+      subtitle: string;
+      name: string;
+      namePlaceholder?: string;
+      email: string;
+      emailPlaceholder?: string;
+      message: string;
+      messagePlaceholder?: string;
+      send: string;
+      sending: string;
+      success: string;
+      error: string;
+    };
+  };
+  interests: {
+    title: string;
+    subtitle: string;
+    gaming: {
+      title: string;
+      description: string;
+      details: string[];
+    };
+    music: {
+      title: string;
+      description: string;
+      details: string[];
+    };
+    cats: {
+      title: string;
+      description: string;
+      details: string[];
+    };
+    social: {
+      title: string;
+      description: string;
+      details: string[];
+    };
   };
   games: {
     title: string;
     subtitle: string;
-    bestScore: string;
+    memory: {
+      title: string;
+      description: string;
+      moves: string;
+      score: string;
+      newGame: string;
+    };
+    snake: {
+      title: string;
+      description: string;
+      score: string;
+      best?: string;
+      pause?: string;
+      resume?: string;
+      gameOver?: string;
+      finalScore?: string;
+      newGame?: string;
+      startGame?: string;
+      ready?: string;
+      instructions?: string;
+    };
+    clicker: {
+      title: string;
+      description: string;
+      points: string;
+      best?: string;
+      clickMe?: string;
+      reset?: string;
+      addPoints?: string;
+    };
     blackjack: {
       title: string;
       description: string;
       score: string;
-      best: string;
-      dealer: string;
-      player: string;
-      hit: string;
-      stand: string;
-      startGame: string;
-      newGame: string;
-      instructions: string;
-      bust: string;
-      dealerBust: string;
-      dealerWins: string;
-      playerWins: string;
-      push: string;
-      blackjack: string;
-      dealerBlackjack: string;
+      best?: string;
+      dealer?: string;
+      player?: string;
+      hit?: string;
+      stand?: string;
+      startGame?: string;
+      newGame?: string;
+      instructions?: string;
+      bust?: string;
+      dealerBust?: string;
+      dealerWins?: string;
+      playerWins?: string;
+      push?: string;
+      blackjack?: string;
+      dealerBlackjack?: string;
     };
+    bestScore?: string;
   };
   dashboard: {
     title: string;
@@ -92,21 +173,5 @@ export interface Translation {
     about: string;
     projects: string;
     contact: string;
-    admin: string;
-    dashboard: string;
-    manageProjects: string;
-    logout: string;
-  };
-  admin: {
-    dashboard: {
-      title: string;
-      overview: string;
-      projects: string;
-      analytics: string;
-      totalVisitors: string;
-      lastUpdated: string;
-      analyticsTitle: string;
-      analyticsDescription: string;
-    };
   };
 }

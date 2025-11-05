@@ -1,6 +1,6 @@
 'use client';
 
-import { Home, Code2, FolderGit2, User, Mail, Github, Linkedin, Gamepad } from 'lucide-react';
+import { Home, Code2, FolderGit2, User, Mail, Github, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
@@ -20,7 +20,7 @@ const menuItems = [
   { icon: FolderGit2, href: '/projects' },
   { icon: User, href: '/about' },
   { icon: Mail, href: '/contact' },
-  { icon: Gamepad, href: '/games' },
+  // games link removed per request
 ];
 
 const socialLinks = [

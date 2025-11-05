@@ -111,7 +111,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-lg text-neutral-400"
           >
-            Discutons de votre projet
+            {t.contact.subtitle || 'Discutons de votre projet'}
           </motion.p>
         </motion.div>
 
@@ -205,7 +205,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 text-white placeholder:text-neutral-500 focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
-                    placeholder="Votre nom"
+                    placeholder={t.contact.form.namePlaceholder || 'Votre nom'}
                     required
                   />
                 </div>
@@ -221,7 +221,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 text-white placeholder:text-neutral-500 focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
-                    placeholder="votre@email.com"
+                    placeholder={t.contact.form.emailPlaceholder || 'votre@email.com'}
                     required
                   />
                 </div>
@@ -238,7 +238,7 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 text-white placeholder:text-neutral-500 focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all resize-none"
-                  placeholder="Parlez-moi de votre projet..."
+                  placeholder={t.contact.form.messagePlaceholder || 'Parlez-moi de votre projet...'}
                   required
                 />
               </div>

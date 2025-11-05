@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { Gamepad2, Music4, Cat, Users } from 'lucide-react';
 import { useLanguage } from '@/components/LanguageContext';
 import { translations } from '@/lib/translations';
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode, Key } from 'react';
 
 const interests = [
   {
@@ -152,7 +153,7 @@ export default function AboutPage() {
 
                     {/* Details list */}
                     <ul className="space-y-2 pt-2">
-                      {interestContent.details.map((detail, i) => (
+                      {interestContent.details.map((detail: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined, i: Key | null | undefined) => (
                         <li
                           key={i}
                           className="flex items-start gap-3 text-sm text-neutral-400 group/item"

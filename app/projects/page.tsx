@@ -100,7 +100,7 @@ export default function ProjectsPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-5xl md:text-6xl font-bold text-white mb-4"
           >
-            Mes projets
+            {t.projects.title}
           </motion.h1>
 
           <motion.p
@@ -109,7 +109,7 @@ export default function ProjectsPage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-lg text-neutral-400 max-w-2xl"
           >
-            Une sélection de sites et applications sur lesquels j&apos;ai travaillé
+            {t.projects.subtitle}
           </motion.p>
         </motion.div>
 
@@ -188,7 +188,7 @@ export default function ProjectsPage() {
                       rel="noopener noreferrer"
                       className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/50 hover:bg-cyan-500/20 hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] transition-all duration-300 font-medium text-sm"
                     >
-                      Voir le site
+                      {t.projects.viewDemo}
                       <ExternalLink className="h-4 w-4" />
                     </a>
                     
@@ -200,7 +200,7 @@ export default function ProjectsPage() {
                         className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-neutral-900/80 hover:bg-neutral-800 border border-neutral-800 hover:border-neutral-700 transition-all duration-300 text-sm font-medium text-neutral-400 hover:text-neutral-300"
                       >
                         <Github className="h-4 w-4" />
-                        Code
+                          {t.projects.viewCode}
                       </a>
                     )}
                   </div>
@@ -227,13 +227,13 @@ export default function ProjectsPage() {
             {/* Card */}
             <div className="relative rounded-xl border border-neutral-800 bg-neutral-950/80 backdrop-blur-sm p-10 group-hover:border-cyan-500/50 transition-colors duration-300">
               <h3 className="text-2xl font-bold mb-3 text-white">
-                Un projet en tête ?
+                {t.projects.cta?.title || 'Un projet en tête ?'}
               </h3>
               <p className="text-neutral-400 mb-6">
-                Discutons-en autour d&apos;un café ☕
+                {t.projects.cta?.subtitle || 'Discutons-en autour d\'un café ☕'}
               </p>
               <button className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500/10 text-cyan-400 rounded-lg border border-cyan-500/50 font-medium hover:bg-cyan-500/20 hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] transition-all duration-300">
-                Me contacter
+                {t.projects.cta?.button || 'Me contacter'}
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </button>
             </div>
